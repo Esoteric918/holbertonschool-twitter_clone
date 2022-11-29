@@ -12,25 +12,20 @@ class CustomFlatButton extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 55, vertical: 10),
-      child: TextButton(
+  Widget build(BuildContext context) => Container(
+      width: double.infinity,
+      margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+      child: FloatingActionButton.extended(
         onPressed: () => onPressed(),
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(Colors.blue),
-          shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30),
-            ),
-          ),
-        ),
-        child: Text(
+        elevation: 0,
+        label: Text(
           label,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.w800,
-          ),
+          style: Theme.of(context).textTheme.button!.copyWith(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.w800,
+                fontFamily: GoogleFonts.mulish().fontFamily,
+              ),
         ),
       ));
 }
