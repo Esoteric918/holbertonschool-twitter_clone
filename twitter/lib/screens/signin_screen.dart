@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:twitter/screens/signup_screen.dart';
-
+import 'package:twitter/screens/forgot_password_screen.dart';
 import '../widgets/entry_field.dart';
 import '../widgets/flat_button.dart';
 
@@ -17,18 +17,20 @@ class _SignInState extends State<SignIn> {
   late final TextEditingController _passwordController;
 
   @override
-  void initState() {
+  initState() {
     super.initState();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
   }
 
   @override
-  void dispose() {
+  dispose() {
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,8 @@ class _SignInState extends State<SignIn> {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: Center(
+        child: Form(
+          key: _formKey,
           child: Column(
             children: [
               const SizedBox(height: 20),
@@ -80,8 +83,9 @@ class _SignInState extends State<SignIn> {
                   );
                 },
                 child: const Text(
-                  'Don\'t have an account? Sign Up',
+                  'Sign Up',
                   style: TextStyle(
+                    color: Colors.amber,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
@@ -89,11 +93,17 @@ class _SignInState extends State<SignIn> {
               ),
               const SizedBox(height: 20),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ForgetPassword(),
+                      ));
+                },
                 child: const Text(
                   'Forgot Password?',
                   style: TextStyle(
-                    fontSize: 18,
+                    color: Colors.blue,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

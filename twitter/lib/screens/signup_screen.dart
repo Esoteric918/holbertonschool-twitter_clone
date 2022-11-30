@@ -19,7 +19,7 @@ class _SignUpState extends State<SignUp> {
   late final TextEditingController _confirmController;
 
   @override
-  void initState() {
+  initState() {
     super.initState();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
@@ -28,13 +28,15 @@ class _SignUpState extends State<SignUp> {
   }
 
   @override
-  void dispose() {
+  dispose() {
     _emailController.dispose();
     _passwordController.dispose();
     _nameController.dispose();
     _confirmController.dispose();
     super.dispose();
   }
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -46,58 +48,62 @@ class _SignUpState extends State<SignUp> {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            children: [
-              const SizedBox(height: 20),
-              const Text(
-                'Sign Up',
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                const SizedBox(height: 20),
+                const Text(
+                  'Sign Up',
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 20),
-              CustomEntryField(
-                hint: 'Email',
-                controller: _emailController,
-              ),
-              CustomEntryField(
-                hint: 'Password',
-                controller: _passwordController,
-              ),
-              CustomEntryField(
-                hint: 'Name',
-                controller: _nameController,
-              ),
-              CustomEntryField(
-                hint: 'Confirm Password',
-                controller: _confirmController,
-              ),
-              const SizedBox(height: 20),
-              CustomFlatButton(
-                label: 'Sign Up',
-                onPressed: () {},
-              ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text('Already have an account?'),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text(
-                      'Sign In',
-                      style: TextStyle(
-                        color: Colors.blue,
+                const SizedBox(height: 20),
+                CustomEntryField(
+                  hint: 'Email',
+                  controller: _emailController,
+                ),
+                CustomEntryField(
+                  hint: 'Password',
+                  controller: _passwordController,
+                ),
+                CustomEntryField(
+                  hint: 'Name',
+                  controller: _nameController,
+                ),
+                CustomEntryField(
+                  hint: 'Confirm Password',
+                  controller: _confirmController,
+                ),
+                const SizedBox(height: 20),
+                CustomFlatButton(
+                  label: 'Sign Up',
+                  onPressed: () {},
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text('Already have an account?'),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text(
+                        'Sign In',
+                        style: TextStyle(
+                          color: Colors.blue,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
