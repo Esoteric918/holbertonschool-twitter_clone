@@ -35,7 +35,12 @@ class _ForgetPasswordState extends State<ForgetPassword> {
           },
           color: Theme.of(context).primaryColor,
         ),
-        title: const Text('Forget Password ?'),
+        title: const Text(
+          'Forget Password ?',
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
@@ -72,7 +77,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
               ),
               const SizedBox(height: 20),
               CustomFlatButton(
-                label: 'Summit',
+                label: 'Submit',
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     ScaffoldMessenger.of(context).showSnackBar(

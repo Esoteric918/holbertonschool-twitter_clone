@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:twitter/screens/home_screen.dart';
 import 'package:twitter/screens/signup_screen.dart';
 import 'package:twitter/screens/forgot_password_screen.dart';
 import '../widgets/entry_field.dart';
@@ -37,7 +38,6 @@ class _SignInState extends State<SignIn> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Sign In'),
-        backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
       ),
@@ -68,6 +68,19 @@ class _SignInState extends State<SignIn> {
               CustomFlatButton(
                 label: 'Submit',
                 onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Processing Data'),
+                      ),
+                    );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomeScreen(),
+                      ),
+                    );
+                  }
                   (_emailController.text);
                   (_passwordController.text);
                 },
