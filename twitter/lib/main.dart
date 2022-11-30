@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:twitter/providers/app_state.dart';
 import 'package:twitter/screens/signin_screen.dart';
 // import 'package:twitter/widgets/entry_field.dart';
 // import 'package:twitter/widgets/flat_button.dart';
@@ -13,19 +15,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        textTheme: TextTheme(
-          button: GoogleFonts.mulish(
-            color: Colors.blue.shade300,
-            fontSize: 18,
-            fontWeight: FontWeight.w800,
-          ),
-        ),
-      ),
-      home: const SignIn(),
-    );
+    return MultiProvider(
+        providers: [ListenableProvider<AppState>(create: (_) => AppState())],
+        builder: (context, __) => MaterialApp(
+              title: 'Flutter Demo',
+              theme: ThemeData(
+                primarySwatch: Colors.blue,
+                textTheme: TextTheme(
+                  button: GoogleFonts.mulish(
+                    color: Colors.blue.shade300,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+              ),
+              home: const SignIn(),
+            ));
   }
 }
