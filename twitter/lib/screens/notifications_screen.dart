@@ -16,9 +16,20 @@ class _NotificationsScreen extends State<NotificationsScreen> {
       appBar: AppBar(
         title: const Text('Notifications'),
       ),
-      body: const Center(
-        child: Text('Notifications'),
-      ),
+      body: Container(
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+          child: Center(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: const [
+                  Text('No Notifications available yet',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  Text("When new notifications are found, they'll show up here",
+                      style: TextStyle(fontSize: 16, color: Colors.grey)),
+                ]),
+          )),
       bottomNavigationBar: const BottomBarMenu(),
     );
   }

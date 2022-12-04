@@ -18,13 +18,13 @@ class _BottomBarMenuState extends State<BottomBarMenu> {
   final List<Widget> screens = [
     const HomeScreen(),
     const SearchScreen(),
-    const ChatsScreen(),
     const NotificationsScreen(),
+    const ChatsScreen(),
   ];
   @override
   Widget build(BuildContext context) {
     int index = Provider.of<AppState>(context, listen: false).pageIndex;
-    print(index);
+
     Color homeColor = index == 0 ? Colors.blue.shade800 : Colors.grey;
     Color searchColor = index == 1 ? Colors.blue.shade800 : Colors.grey;
     Color notifColor = index == 2 ? Colors.blue.shade800 : Colors.grey;
@@ -37,7 +37,6 @@ class _BottomBarMenuState extends State<BottomBarMenu> {
           showUnselectedLabels: false,
           currentIndex: index,
           onTap: (index) {
-            print(index);
             appState.setpageIndex = index;
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => screens[index]));
@@ -63,7 +62,6 @@ class _BottomBarMenuState extends State<BottomBarMenu> {
                 color: notifColor,
               ),
               label: 'Notifications',
-              tooltip: 'Balls',
             ),
             BottomNavigationBarItem(
               icon: Icon(
