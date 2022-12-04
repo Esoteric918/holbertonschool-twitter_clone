@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/bottom_bar_menu.dart';
+
 class ChatsScreen extends StatefulWidget {
   const ChatsScreen({Key? key}) : super(key: key);
 
@@ -17,6 +19,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
       body: const Center(
         child: Text('Chats'),
       ),
+      bottomNavigationBar: const BottomBarMenu(),
     );
   }
 }
