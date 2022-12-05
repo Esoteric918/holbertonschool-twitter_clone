@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:twitter/screens/signup_screen.dart';
 
 import '../widgets/entry_field.dart';
 import '../widgets/flat_button.dart';
+import '../providers/auth_state.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -15,6 +17,7 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   late final TextEditingController _emailController;
   late final TextEditingController _passwordController;
+  late final TextEditingController _usernameController;
   late final TextEditingController _nameController;
   late final TextEditingController _confirmController;
 
@@ -23,6 +26,7 @@ class _SignUpState extends State<SignUp> {
     super.initState();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
+    _usernameController = TextEditingController();
     _nameController = TextEditingController();
     _confirmController = TextEditingController();
   }
@@ -31,6 +35,7 @@ class _SignUpState extends State<SignUp> {
   dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _usernameController.dispose();
     _nameController.dispose();
     _confirmController.dispose();
     super.dispose();
@@ -68,12 +73,12 @@ class _SignUpState extends State<SignUp> {
                   controller: _emailController,
                 ),
                 CustomEntryField(
-                  hint: 'Password',
-                  controller: _passwordController,
-                ),
-                CustomEntryField(
                   hint: 'Name',
                   controller: _nameController,
+                ),
+                CustomEntryField(
+                  hint: 'Password',
+                  controller: _passwordController,
                 ),
                 CustomEntryField(
                   hint: 'Confirm Password',
@@ -82,7 +87,18 @@ class _SignUpState extends State<SignUp> {
                 const SizedBox(height: 20),
                 CustomFlatButton(
                   label: 'Sign Up',
-                  onPressed: () {},
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      Auth().SignUp(
+                        context,
+                        _nameController.text,
+                        _usernameController.text,
+                        _emailController.text,
+                        _passwordController.text,
+                        _confirmController.text,
+                      );
+                    }
+                  },
                 ),
                 const SizedBox(height: 20),
                 Row(
