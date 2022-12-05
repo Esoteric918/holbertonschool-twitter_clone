@@ -7,10 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:twitter/providers/app_state.dart';
 import 'package:twitter/screens/signin_screen.dart';
-import '../providers/auth_state.dart';
+import 'package:twitter/providers/auth_state.dart';
 
-// import 'package:twitter/widgets/entry_field.dart';
-// import 'package:twitter/widgets/flat_button.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(

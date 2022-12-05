@@ -3,8 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:twitter/models/user.dart';
 
-class Auth extends ChangeNotifier {
-  static Future<User?> newNewSignUp(
+class AuthState extends ChangeNotifier {
+  static Future<User?> newSignUp(
       String email, String password, String username, String name) async {
     final auth = FirebaseAuth.instance;
     final firestore = FirebaseFirestore.instance;
@@ -17,9 +17,9 @@ class Auth extends ChangeNotifier {
     if (user != null) {
       final userRef = firestore.collection('users').doc(user.uid);
 
-      final userData = User();
+      final userData = UserData();
 
-      await userRef.set(userData.toDocument());
+      await userRef.set(userData.toJson());
 
       return user;
     }

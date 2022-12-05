@@ -89,13 +89,11 @@ class _SignUpState extends State<SignUp> {
                   label: 'Sign Up',
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      Auth().SignUp(
-                        context,
-                        _nameController.text,
-                        _usernameController.text,
+                      AuthState.newSignUp(
                         _emailController.text,
                         _passwordController.text,
-                        _confirmController.text,
+                        _usernameController.text,
+                        _nameController.text,
                       );
                     }
                   },
