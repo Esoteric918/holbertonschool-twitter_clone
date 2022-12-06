@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:twitter/screens/signin_screen.dart';
-import 'package:twitter/widgets/side_bar_menu.dart';
-import 'package:twitter/widgets/bottom_bar_menu.dart';
-import 'package:twitter/widgets/post_widget.dart';
+import '../providers/auth_state.dart';
+import 'all_screens.dart';
+import '../widgets/all_widgets.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -26,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     builder: (context) => const SignIn(),
                   ),
                 );
+                AuthState().logout();
               },
               icon: const Icon(Icons.exit_to_app),
             ),

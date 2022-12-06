@@ -1,3 +1,4 @@
+// ignore: depend_on_referenced_packages
 import 'package:firebase_core/firebase_core.dart';
 
 import 'firebase_options.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
           ListenableProvider<AuthState>(create: (_) => AuthState()),
         ],
         builder: (context, __) => MaterialApp(
-              title: 'Flutter Demo',
+              title: 'Spitter',
               theme: ThemeData(
                 primarySwatch: Colors.blue,
                 textTheme: TextTheme(

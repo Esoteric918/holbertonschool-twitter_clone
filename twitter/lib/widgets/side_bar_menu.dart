@@ -1,6 +1,11 @@
-// ignore_for_file: unnecessary_const
-
+import 'dart:core';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../providers/all_providers.dart';
+
+// import 'package:firebase_auth/firebase_auth.dart';
+// import '../screens/all_screens.dart';
+// import '../models/user.dart';
 
 class SideBarMenu extends StatefulWidget {
   const SideBarMenu({Key? key}) : super(key: key);
@@ -29,6 +34,8 @@ class _SideBarMenuState extends State<SideBarMenu> {
 
   @override
   Widget build(BuildContext context) {
+    var activeUserData = Provider.of<AuthState>(context).activeUserData;
+
     return Drawer(
       child: ListView(
         // padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
@@ -56,7 +63,7 @@ class _SideBarMenuState extends State<SideBarMenu> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      '$followers Followers',
+                      '${activeUserData!.followers} Followers',
                       style: const TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.bold,
@@ -64,7 +71,7 @@ class _SideBarMenuState extends State<SideBarMenu> {
                     ),
                     const SizedBox(width: 10),
                     Text(
-                      '$following Following',
+                      '${activeUserData.following} Following',
                       style: const TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.bold,

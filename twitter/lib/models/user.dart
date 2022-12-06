@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class UserData {
   String key;
   String userID;
@@ -10,6 +12,8 @@ class UserData {
   int following;
   List<String> followersList;
   List<String> followingList;
+  String bio = '';
+  String coverImgurl = '';
 
   UserData({
     this.key = 'key',
@@ -23,6 +27,8 @@ class UserData {
     this.following = 0,
     this.followersList = const [''],
     this.followingList = const [''],
+    this.bio = 'No Bio available',
+    this.coverImgurl = 'https://www.w3schools.com/howto/img_avatar.png',
   });
 
   static UserData fromJson(Map<String, dynamic> json) => UserData(
@@ -37,6 +43,8 @@ class UserData {
         following: json["following"],
         followersList: ["followersList"],
         followingList: ["followingList"],
+        bio: json["bio"],
+        coverImgurl: json["coverImgurl"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -51,5 +59,21 @@ class UserData {
         "following": following,
         "followersList": followersList,
         "followingList": followingList,
+        "bio": bio,
+        "coverImgurl": coverImgurl,
       };
+
+  // Future<UserData> getUserByID(String userID) {
+  //   return FirebaseFirestore.instance
+  //       .collection('userData')
+  //       .doc(userID)
+  //       .get()
+  //       .then((DocumentSnapshot documentSnapshot) {
+  //     if (documentSnapshot.exists) {
+  //       return UserData.fromJson(documentSnapshot.data());
+  //     } else {
+  //       return UserData();
+  //     }
+  //   });
+  // }
 }
