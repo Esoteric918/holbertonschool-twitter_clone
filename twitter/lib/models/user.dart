@@ -63,14 +63,14 @@ class UserData {
         "coverImgurl": coverImgurl,
       };
 
-  // Future<UserData> getUserByID(String userID) {
-  //   return FirebaseFirestore.instance
+  // Future<UserData> getUserByID(String userID) async {
+  //   return await FirebaseFirestore.instance
   //       .collection('userData')
   //       .doc(userID)
   //       .get()
   //       .then((DocumentSnapshot documentSnapshot) {
   //     if (documentSnapshot.exists) {
-  //       return UserData.fromJson(documentSnapshot.data());
+  //       return documentSnapshot.data();
   //     } else {
   //       return UserData();
   //     }

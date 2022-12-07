@@ -19,12 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
           actions: [
             IconButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const SignIn(),
-                  ),
-                );
+                Navigator.popUntil(context, (route) => route.isFirst);
                 AuthState().logout();
               },
               icon: const Icon(Icons.exit_to_app),

@@ -35,11 +35,10 @@ class _SideBarMenuState extends State<SideBarMenu> {
   @override
   Widget build(BuildContext context) {
     var activeUserData = Provider.of<AuthState>(context).activeUserData;
-
+    print('activeUserData: $activeUserData');
     return Drawer(
       child: ListView(
-        // padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-        padding: const EdgeInsets.only(left: 20, top: 10, right: 20, bottom: 0),
+        padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
         children: [
           SizedBox(
             height: 200,
@@ -53,7 +52,7 @@ class _SideBarMenuState extends State<SideBarMenu> {
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  username,
+                  activeUserData!.userName,
                   style: const TextStyle(
                     fontSize: 12,
                   ),
@@ -63,7 +62,7 @@ class _SideBarMenuState extends State<SideBarMenu> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      '${activeUserData!.followers} Followers',
+                      '${activeUserData.followers} Followers',
                       style: const TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.bold,
@@ -125,7 +124,10 @@ class _SideBarMenuState extends State<SideBarMenu> {
             thickness: 2,
           ),
           ListTile(
-            onTap: () {},
+            onTap: () {
+              Navigator.popUntil(context, (route) => route.isFirst);
+              Provider.of<AuthState>(context, listen: false).logout();
+            },
             leading: const Icon(Icons.logout),
             title: const Text('Log out'),
           ),
